@@ -1,0 +1,15 @@
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.title > button {
+    margin-left: 40px;
+    height: 40px;
+    padding: 0 16px;
+}
+
+.tasksFinalizadas {
+    margin-top: 80px;
+}
+

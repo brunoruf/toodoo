@@ -1,0 +1,30 @@
+.taskContainer {
+    display: flex;
+    border: 1px solid #000;
+    padding: 0 16px;
+    margin-top: -1px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskInfos {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.taskEvents {
+    display: flex;
+    gap: 8px;
+}
+
+.divisoria {
+    width: 1px;
+    height: 40px;
+    background: rgb(223, 223, 223);
+}
+
+input {
+    width: 24px;
+    height: 24px;
+}

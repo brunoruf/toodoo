@@ -1,0 +1,71 @@
+.modalNovo {
+    position: fixed;
+    background: rgba(255, 255, 255, .9);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    display: none;
+    opacity: 0;
+}
+
+.modalUpdate {
+    position: fixed;
+    background: rgba(255, 255, 255, .9);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    display: none;
+    opacity: 0;
+}
+
+.active {
+    display: flex;
+    opacity: 1;
+}
+
+.novaTask {
+    box-sizing: border-box;
+    border: 1px solid #000;
+    width: 100%;
+    min-width: 320px;
+    max-width: 500px;
+    padding: 16px;
+    background: #FFF;
+    position: relative;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.formField input {
+    width: 97%;
+}
+
+.formField textarea {
+    height: 100px;
+}
+
+.formField label {
+    margin-bottom: 6px;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    top: 0;
+    background: #000;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
