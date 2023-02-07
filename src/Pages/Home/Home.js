@@ -1,13 +1,13 @@
+
 import { Task } from "../../Components/Task/Task";
 import '../../App.css'
 import { useEffect, useState } from "react";
 import { Modal} from "../../Components/Modal/Modal";
 import { ModalUpdate} from "../../Components/Modal/ModalUpdate";
 
-const url = 'http://localhost:1337/api/tasks'
-const url2 = 'http://localhost:1337/api/tasks'
-const token = 'c063a7ab0318621f6e030594db9c81fd585131fd8dc44abd6d502ed1ccf16dd32734a96bebd67d305f071864da3ae11e8a7c60de5df0b39117bf3cd24a4a2e6f3d01ad86ff583d650ab8cd0e8b64643795f283d88c7c90a87e57e0915d7099195c809ebb4d4378a689f61627fbccdd97f6997d65c170a01572dd1658ba01534e'
 
+const url = process.env.REACT_APP_BASE_URL
+const token = process.env.REACT_APP_API_TOKEN
 
 export const Home = () => {
     
@@ -33,7 +33,7 @@ export const Home = () => {
   
     // POST dados
     const postTask = (item) => {
-      fetch(url2, {
+      fetch(url, {
         method:'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,12 +127,7 @@ export const Home = () => {
     function handleSetCompleted(e) {
       const id = e.target.parentNode.parentNode.id;
       let isCompleted
-    
-      if (e.target.checked) {
-        isCompleted = true;
-      } else {
-        isCompleted = false;
-      }
+      e.target.checked ? isCompleted=true : isCompleted=false
     
       const task = {
         id: id,
@@ -170,7 +165,7 @@ export const Home = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [id, setId] = useState('')
-    const [completed, setCompleted] = useState(false)
+    const completed = false
   
     const newTask = {
       id:id,
@@ -178,9 +173,6 @@ export const Home = () => {
       description: description,
       completed: completed,
     }
-  
-  
-  
   
       return ( 
         <>

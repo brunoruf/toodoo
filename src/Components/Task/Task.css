@@ -21,7 +21,7 @@
 .divisoria {
     width: 1px;
     height: 40px;
-    background: rgb(223, 223, 223);
+    background: #dfdfdf;
 }
 
 input {
