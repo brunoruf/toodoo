@@ -42,7 +42,7 @@ export const Home = () => {
       closeModalNewTask()
     }
 
-    const postTask = (item) => {
+    function postTask (item) {
       fetch(url, {
         method:'POST',
         headers: {
@@ -90,13 +90,13 @@ export const Home = () => {
     }
     // UPDATE dados fim
       
-    // DELETE task inicio
+    // DELETE task
     function handleDeleteTask(e, item) {
       e.preventDefault()
       deleteItem(item.id)
     }
   
-    const deleteItem = (id) => {
+    function deleteItem(id) {
       fetch(`http://localhost:1337/api/tasks/${id}`, {
         method:'DELETE',
         headers: {
@@ -108,8 +108,7 @@ export const Home = () => {
       .catch(erro => console.log('Aconteceu um erro -') + console.log(erro))
     }
 
-    const updateTask = (item) => {
-  
+    function updateTask(item) {
       fetch(`http://localhost:1337/api/tasks/${item.id}`, {
         method:'PUT',
         headers: {
@@ -133,16 +132,16 @@ export const Home = () => {
   
     //CHECKBOX
     function handleSetCompleted(e) {
-      const id = e.target.parentNode.parentNode.id;
+      const id = e.target.parentNode.parentNode.parentNode.id;
       let isCompleted
       e.target.checked ? isCompleted=true : isCompleted=false
-    
+
       const task = {
         id: id,
         completed: isCompleted,
-      };
-    
-      return updateTask(task);
+      }
+      
+      updateTask(task)
     }
     //CHECKBOX fim
   
