@@ -1,5 +1,6 @@
 .taskContainer {
     display: flex;
+    flex-wrap: wrap;
     border: 1px solid #000;
     padding: 0 16px;
     margin-top: -1px;
@@ -8,6 +9,13 @@
 }
 
 .taskInfos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.taskInfos > div {
     display: flex;
     align-items: center;
     gap: 16px;

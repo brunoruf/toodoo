@@ -11,8 +11,10 @@ export const Task = ({id, title, description, handleDelete, openModal, checked, 
     <>
         <div className='taskContainer' id={id}>
             <div className='taskInfos'>
+              <div>
                 <input id= {id} type='checkbox' defaultChecked={checked} onClick={setChecked}></input>
                 <h4 className={`taskTitle-${id}`}>{title}</h4>
+              </div>
                 <div className='divisoria'></div>
                 <p className={`taskDescription-${id}`}>{description}</p>       
             </div>

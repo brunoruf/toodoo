@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import './modal.css'
 
 function fechaModal() {
@@ -13,7 +12,7 @@ export const ModalUpdate = ({title, description, submit, valueTitle, valueDescri
     <div className="modalUpdate">
       <div className="novaTask">
         <span className="close" onClick={() => fechaModal()}>X</span>
-        <h3>Nova task</h3>
+        <h3>Alterar task</h3>
         <form>
           <div className="formField">
             <label>Titulo</label>

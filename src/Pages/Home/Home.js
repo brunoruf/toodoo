@@ -1,6 +1,5 @@
-
 import { Task } from "../../Components/Task/Task";
-import '../../App.css'
+import './Home.css'
 import { useEffect, useState } from "react";
 import { Modal} from "../../Components/Modal/Modal";
 import { ModalUpdate} from "../../Components/Modal/ModalUpdate";
@@ -32,6 +31,17 @@ export const Home = () => {
   
   
     // POST dados
+    function openModalNewTask() {
+      const modal = document.querySelector(".modalNovo")
+      modal.classList.add('active')
+    }
+
+    function handlePostTask(e) {
+      e.preventDefault()
+      postTask(newTask)
+      closeModalNewTask()
+    }
+
     const postTask = (item) => {
       fetch(url, {
         method:'POST',
@@ -51,16 +61,53 @@ export const Home = () => {
       .then(window.location.reload())
       .catch(erro => console.log('Aconteceu um erro') + console.log(erro))
     }
-  
-      function handlePostTask(e) {
-        e.preventDefault()
-        postTask(newTask)
-        closeModalNewTask()
+
+      function closeModalNewTask() {
+        const modal = document.querySelector(".modalNovo")
+        modal.classList.remove('active')
       }
     // POST dados
   
   
     //UPDATE dados
+    function openModalUpdateTask(e) {
+      const modal = document.querySelector(".modalUpdate")
+      modal.classList.add('active')
+      const id = e.target.parentNode.parentNode.id
+      const taskTitleSelect = document.querySelector(`.taskTitle-${id}`)
+      const taskTitle = taskTitleSelect.textContent
+      const taskDescriptionSelect = document.querySelector(`.taskDescription-${id}`)
+      const taskDescription = taskDescriptionSelect.textContent
+      setId(id)
+      setTitle(taskTitle)
+      setDescription(taskDescription)
+    }
+
+      function handleUpdateTask(e) {
+      e.preventDefault()
+      updateTask(newTask)
+      closeModalNewTask()
+    }
+    // UPDATE dados fim
+      
+    // DELETE task inicio
+    function handleDeleteTask(e, item) {
+      e.preventDefault()
+      deleteItem(item.id)
+    }
+  
+    const deleteItem = (id) => {
+      fetch(`http://localhost:1337/api/tasks/${id}`, {
+        method:'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'bearer ' + token,
+        },
+      })
+      .then(setTimeout(() => {document.location.reload()}, 100))
+      .catch(erro => console.log('Aconteceu um erro -') + console.log(erro))
+    }
+
     const updateTask = (item) => {
   
       fetch(`http://localhost:1337/api/tasks/${item.id}`, {
@@ -81,48 +128,9 @@ export const Home = () => {
       .then(setTimeout(() => {document.location.reload()}, 100))
       .catch(erro => console.log('Aconteceu um erro') + console.log(erro)))
     }
-  
-  
-    function handleUpdateTask(e) {
-      e.preventDefault()
-      updateTask(newTask)
-      closeModalUpdateTask() 
-    }
-    // UPDATE dados fim
-      
-    // DELETE task inicio
-    function handleDeleteTask(e, item) {
-      e.preventDefault()
-      deleteItem(item.id)
-    }
-  
-    const deleteItem = (id) => {
-      fetch(`http://localhost:1337/api/tasks/${id}`, {
-        method:'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'bearer ' + token,
-        },
-      })
-      .then(setTimeout(() => {document.location.reload()}, 100))
-      .catch(erro => console.log('Aconteceu um erroooo') + console.log(erro))
-    }
     // DELETE task fim
   
   
-    // MODAL NOVA TASK
-    function openModalNewTask() {
-      const modal = document.querySelector(".modalNovo")
-      modal.classList.add('active')
-    }
-  
-    function closeModalNewTask() {
-      const modal = document.querySelector(".modalNovo")
-      modal.classList.remove('active')
-    }
-    //MODAL NOVA TASK fim
-  
-    
     //CHECKBOX
     function handleSetCompleted(e) {
       const id = e.target.parentNode.parentNode.id;
@@ -136,30 +144,7 @@ export const Home = () => {
     
       return updateTask(task);
     }
-    
     //CHECKBOX fim
-  
-  
-    //MODAL UPDATE TASK
-    function openModalUpdateTask(e) {
-      const modal = document.querySelector(".modalUpdate")
-      modal.classList.add('active')
-      const id = e.target.parentNode.parentNode.id
-      const taskTitleSelect = document.querySelector(`.taskTitle-${id}`)
-      const taskTitle = taskTitleSelect.textContent
-      const taskDescriptionSelect = document.querySelector(`.taskDescription-${id}`)
-      const taskDescription = taskDescriptionSelect.textContent
-      setId(id)
-      setTitle(taskTitle)
-      setDescription(taskDescription)
-    }
-  
-    function closeModalUpdateTask() {
-      const modal = document.querySelector(".modalUpdate")
-      modal.classList.remove('active')
-    }
-    //MODAL UPDATE TASK fim
-  
   
     
     const [title, setTitle] = useState('')
@@ -183,10 +168,10 @@ export const Home = () => {
             <button onClick={() => openModalNewTask()}>Nova Task</button>
           </div>
           <h2>A fazer</h2>
-          {data.map(item => item.attributes.completed===false && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
+          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
           <h2 className="tasksFinalizadas">Finalizadas</h2>
           <div className="finalizadas">
-          {data.map(item => item.attributes.completed===true && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
+          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===true && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
           </div>
         </>
       );
