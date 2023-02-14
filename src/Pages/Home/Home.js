@@ -104,7 +104,7 @@ export const Home = () => {
           'Authorization': 'bearer ' + token,
         },
       })
-      .then(setTimeout(() => {document.location.reload()}, 100))
+      .then(console.log(`${url}/${id}`))
       .catch(erro => console.log('Aconteceu um erro -') + console.log(erro))
     }
 
