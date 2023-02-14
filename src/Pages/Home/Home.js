@@ -97,7 +97,7 @@ export const Home = () => {
     }
   
     function deleteItem(id) {
-      fetch(`http://localhost:1337/api/tasks/${id}`, {
+      fetch(`${url}/${id}`, {
         method:'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ export const Home = () => {
     }
 
     function updateTask(item) {
-      fetch(`http://localhost:1337/api/tasks/${item.id}`, {
+      fetch(`${url}/${item.id}`, {
         method:'PUT',
         headers: {
           'Content-Type': 'application/json',
