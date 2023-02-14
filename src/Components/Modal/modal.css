@@ -1,23 +1,25 @@
 .modalNovo {
     position: fixed;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(0, 0, 0, 0.6);
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
     display: none;
     opacity: 0;
+    left: 0;
 }
 
 .modalUpdate {
     position: fixed;
-    background: rgba(255, 255, 255, .9);
+    background: rgba(0, 0, 0, 0.6);
     align-items: center;
     justify-content: center;
     height: 100vh;
     width: 100%;
     display: none;
     opacity: 0;
+    left: 0;
 }
 
 .active {
@@ -34,6 +36,8 @@
     padding: 16px;
     background: #FFF;
     position: relative;
+    margin: 8px;
+    border-radius: 8px;
 }
 
 .formField {
