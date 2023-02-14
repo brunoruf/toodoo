@@ -5,8 +5,6 @@ import './Task.css';
 
 export const Task = ({id, title, description, handleDelete, openModal, checked, setChecked}) => {
 
-
-
   return (
     <>
         <div className='taskContainer' id={id}>
@@ -15,8 +13,8 @@ export const Task = ({id, title, description, handleDelete, openModal, checked, 
                 <input id= {id} type='checkbox' defaultChecked={checked} onClick={setChecked}></input>
                 <h4 className={`taskTitle-${id}`}>{title}</h4>
               </div>
-                <div className='divisoria'></div>
-                <p className={`taskDescription-${id}`}>{description}</p>       
+              {description.length !== 0 && <div className='divisoria'></div>}
+              <p className={`taskDescription-${id} taskDescription`}>{description}</p>       
             </div>
             <div className='taskEvents'>
                 <button onClick={openModal}>Alterar</button>

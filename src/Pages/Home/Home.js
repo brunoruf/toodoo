@@ -163,7 +163,7 @@ export const Home = () => {
         <Modal title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} submit={(e) => handlePostTask(e)} />
         <ModalUpdate title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} valueTitle={title} valueDescription={description} submit={(e) => handleUpdateTask(e)} />
           <div className="title">
-            <h1>To-do-list</h1>
+            <h1>toodoo</h1>
             <button onClick={() => openModalNewTask()}>Nova Task</button>
           </div>
           <h2>A fazer</h2>
