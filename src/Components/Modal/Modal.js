@@ -1,3 +1,4 @@
+import { ButtonPrimary } from '../Button/ButtonPrimary'
 import './modal.css'
 
 function fechaModal() {
@@ -22,9 +23,9 @@ export const Modal = ({title, description, submit}) => {
           </div>
           <div className="formField">
             <label>Descrição</label>
-            <textarea type='text' placeholder="Digite uma descrição"  onChange={description}/>
+            <textarea type='text' placeholder="Digite uma descrição" onChange={description}/>
           </div>
-          <button type='submit' onClick={submit}>Cadastrar</button>
+          <ButtonPrimary type='submit' onClick={submit} text='Cadastrar' />
         </form>
       </div>
     </div>

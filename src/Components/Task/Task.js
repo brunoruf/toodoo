@@ -1,4 +1,5 @@
 import React from 'react'
+import { ButtonSecondary } from '../Button/ButtonSecondary';
 import './Task.css';
 
 
@@ -7,7 +8,7 @@ export const Task = ({id, title, description, handleDelete, openModal, checked, 
 
   return (
     <>
-        <div className={classes} id={id}>
+        <li className={classes} id={id}>
             <div className='taskInfos'>
               <div>
                 <input className='taskCheckbox' id= {id} type='checkbox' defaultChecked={checked} onClick={setChecked}></input>
@@ -17,10 +18,10 @@ export const Task = ({id, title, description, handleDelete, openModal, checked, 
               <p className={`taskDescription-${id} taskDescription`}>{description}</p>       
             </div>
             <div className='taskEvents'>
-                <button onClick={openModal}>Alterar</button>
-                <button onClick={handleDelete}>Deletar</button>
+                <ButtonSecondary onClick={openModal} text='Alterar' />
+                <ButtonSecondary onClick={handleDelete} text='Deletar' action='delete'/>
             </div>
-        </div>
+        </li>
     </>
   )
 }

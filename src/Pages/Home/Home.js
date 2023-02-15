@@ -3,6 +3,7 @@ import './Home.css'
 import { useEffect, useState } from "react";
 import { Modal} from "../../Components/Modal/Modal";
 import { ModalUpdate} from "../../Components/Modal/ModalUpdate";
+import { ButtonPrimary } from "../../Components/Button/ButtonPrimary";
 
 
 const url = process.env.REACT_APP_BASE_URL
@@ -164,13 +165,17 @@ export const Home = () => {
         <ModalUpdate title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} valueTitle={title} valueDescription={description} submit={(e) => handleUpdateTask(e)} />
           <div className="title">
             <h1>toodoo</h1>
-            <button onClick={() => openModalNewTask()}>Nova Task</button>
+            <ButtonPrimary onClick={() => openModalNewTask()} text='Nova Task'/>
           </div>
           <h2>A fazer</h2>
-          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && <Task key={item.id} classes='taskContainer' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
+          <ul>
+            {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && <Task key={item.id} classes='taskContainer' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
+          </ul>
           <h2 className="tasksFinalizadas">Finalizadas</h2>
           <div className="finalizadas">
-          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===true && <Task key={item.id} classes='taskContainer completed' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
+          <ul>
+            {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===true && <Task key={item.id} classes='taskContainer completed' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
+          </ul>
           </div>
         </>
       );

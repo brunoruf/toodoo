@@ -11,11 +11,13 @@
   --gray-900: #121214;
 
   --primary: #8069ef;
+  --primary-100: #d0c8f9;
   --primary-300: #ac9cfd;
+  --primary-400: #6d55e4;
   --primary-500: #6043eb;
   --primary-700: #4d36bc;
   --primary-800: #3f2d9a;
-  --primary-900: #090919;
+  --primary-900: #261769;
 
   --secondary-300: #f1bd8d;
   --secondary-500: #edad71;
@@ -25,8 +27,8 @@
   --tertiary-500: #3f4463;
   --tertiary-700: #32364f;
 
-  --red-500: #e23948;
-  --red-700: #c23642;
+  --red-500: #fa4a82;
+  --red-700: #b73d63;
 
   --yellow-500: #e9ed71;
 
@@ -36,16 +38,12 @@
 
 body {
   margin: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Comfortaa', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 1280px;
   margin: 0 auto 40px;
   padding: 0 16px;
-  font-family: 'Comfortaa', cursive;
-  font-family: 'Overpass Mono', monospace;
   background: var(--primary-700);
 }
 
@@ -54,3 +52,8 @@ code {
     monospace;
 }
 
+
+ul {
+  margin: 0;
+  padding: 0;
+}
