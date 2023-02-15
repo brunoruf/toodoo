@@ -10,12 +10,12 @@
 }
 
 .tasksFinalizadas {
-    margin-top: 80px;
+    margin-top: 48px;
 }
 
 h1 {
     font-family: Comfortaa, sans-serif;
-    letter-spacing: -3px;
+    letter-spacing: -5px;
     font-weight: 700;
     font-size: 2.5rem;
     color: #FFF;
@@ -23,5 +23,5 @@ h1 {
 
 h2 {
     font-family: Comfortaa, sans-serif;
-    color: #e7d45c;
+    color: var(--secondary-300);
 }

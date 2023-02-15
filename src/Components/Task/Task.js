@@ -3,14 +3,14 @@ import './Task.css';
 
 
 
-export const Task = ({id, title, description, handleDelete, openModal, checked, setChecked}) => {
+export const Task = ({id, title, description, handleDelete, openModal, checked, setChecked, classes}) => {
 
   return (
     <>
-        <div className='taskContainer' id={id}>
+        <div className={classes} id={id}>
             <div className='taskInfos'>
               <div>
-                <input id= {id} type='checkbox' defaultChecked={checked} onClick={setChecked}></input>
+                <input className='taskCheckbox' id= {id} type='checkbox' defaultChecked={checked} onClick={setChecked}></input>
                 <h4 className={`taskTitle-${id}`}>{title}</h4>
               </div>
               {description.length !== 0 && <div className='divisoria'></div>}

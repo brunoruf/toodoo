@@ -167,10 +167,10 @@ export const Home = () => {
             <button onClick={() => openModalNewTask()}>Nova Task</button>
           </div>
           <h2>A fazer</h2>
-          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
+          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && <Task key={item.id} classes='taskContainer' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={(e) => handleDeleteTask(e, item)} openModal={(e) => openModalUpdateTask(e)}  setChecked={(e) => handleSetCompleted(e)} /> )}
           <h2 className="tasksFinalizadas">Finalizadas</h2>
           <div className="finalizadas">
-          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===true && <Task key={item.id} id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
+          {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===true && <Task key={item.id} classes='taskContainer completed' id= {item.id} title={item.attributes.title} description={item.attributes.description} handleDelete={() => deleteItem(item.id)} openModal={(e) => openModalUpdateTask(e)} checked={true} setChecked={(e) => handleSetCompleted(e)} />)}
           </div>
         </>
       );

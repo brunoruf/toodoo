@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
-    background: #581f84;
+    background: var(--primary-800);
     border-radius: 8px;
 }
 
@@ -15,7 +15,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
-    color: #FFF;
+    color: var(--white);
 }
 
 .taskInfos > div {
@@ -30,25 +30,34 @@
 }
 
 .taskDescription {
-    color: #b298c5;
+    color: var(--primary-300);
     font-size: .875rem;
 }
 
 .divisoria {
     width: 100%;
     height: 1px;
-    background: #6e349b;
+    background: var(--primary-700);
 }
 
-input {
+.completed {
+    opacity: .5;
+}
+
+.completed:hover {
+    opacity: 1;
+}
+
+.taskCheckbox {
     width: 20px;
     height: 20px;
     display: inline-block;
     background-color: #FFF;
     border-radius: 4px;
+    cursor: pointer;
 }
 
-input:checked {
+.taskCheckbox:checked {
     width: 20px;
     height: 20px;
     color: #FFF;
