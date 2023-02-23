@@ -14,14 +14,14 @@ export const ModalUpdate = ({title, description, submit, valueTitle, valueDescri
       <div className="novaTask">
         <span className="close" onClick={() => fechaModal()}>X</span>
         <h3>Alterar task</h3>
-        <form>
+        <form id='taskForm'>
           <div className="formField">
             <label>Titulo</label>
-            <input type='text' placeholder="Digite um título" onChange={title} defaultValue={valueTitle} />
+            <input type='text' placeholder="Digite um título" onChange={title} defaultValue={valueTitle}/>
           </div>
           <div className="formField">
             <label>Descrição</label>
-            <textarea type='text' placeholder="Digite uma descrição"  onChange={description} defaultValue={valueDescription}/>
+            <textarea type='text' placeholder="Digite uma descrição" onChange={description} defaultValue={valueDescription}/>
           </div>
           <ButtonPrimary type='submit' onClick={submit} text='Alterar' />
         </form>

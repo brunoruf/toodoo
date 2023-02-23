@@ -40,10 +40,12 @@ export const Home = () => {
     function handlePostTask(e) {
       e.preventDefault()
       postTask(newTask)
-      closeModalNewTask()
+      const modal = document.querySelector(".modalNovo")
+      modal.classList.remove('active')
     }
 
     function postTask (item) {
+      console.log(item)
       fetch(url, {
         method:'POST',
         headers: {
@@ -52,22 +54,17 @@ export const Home = () => {
         },
         body: JSON.stringify({
           data: {
-            title: item.title,
-            description: item.description,
-            completed: item.completed,
+            title: item.attributes.title,
+            description: item.attributes.description,
+            completed: item.attributes.completed,
           } 
         })
       })
       .then(response => response.json())
-      .then(window.location.reload())
+      .then(setData([...data, item]))
       .catch(erro => console.log('Aconteceu um erro') + console.log(erro))
     }
-
-      function closeModalNewTask() {
-        const modal = document.querySelector(".modalNovo")
-        modal.classList.remove('active')
-      }
-    // POST dados
+    // POST dados fim
   
   
     //UPDATE dados
@@ -79,18 +76,45 @@ export const Home = () => {
       const taskTitle = taskTitleSelect.textContent
       const taskDescriptionSelect = document.querySelector(`.taskDescription-${id}`)
       const taskDescription = taskDescriptionSelect.textContent
-      setId(id)
+      setId(Number(id))
       setTitle(taskTitle)
       setDescription(taskDescription)
     }
 
-      function handleUpdateTask(e) {
+    function handleUpdateTask(e) {
       e.preventDefault()
       updateTask(newTask)
-      closeModalNewTask()
+      const modal = document.querySelector(".modalUpdate")
+      modal.classList.remove('active')
+      document.getElementById("taskForm").reset();
+    }
+
+    function updateTask(item) {
+      const updatedIndex = data.findIndex(arr => arr.id === item.id)
+      data[updatedIndex] = item
+      const newArray = [...data]  
+      fetch(`${url}/${item.id}`, {
+        method:'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'bearer ' + token,
+        },
+        body: JSON.stringify({
+          data: {
+            title: item.attributes.title,
+            description: item.attributes.description,
+            completed: item.attributes.completed,
+          } 
+        })
+      })
+      .then(response => response.json())
+      .then(setData(newArray))
+      .then(setCompleted(false))
+      .catch(erro => console.log('Aconteceu um erro') + console.log(erro))
     }
     // UPDATE dados fim
       
+
     // DELETE task
     function handleDeleteTask(e, item) {
       e.preventDefault()
@@ -105,43 +129,29 @@ export const Home = () => {
           'Authorization': 'bearer ' + token,
         },
       })
-      .then(setTimeout(() => {document.location.reload()}, 100))
+      .then(setData((arr) => arr.filter((item) => item.id !== id)))
       .catch(erro => console.log('Aconteceu um erro -') + console.log(erro))
-    }
-
-    function updateTask(item) {
-      fetch(`${url}/${item.id}`, {
-        method:'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'bearer ' + token,
-        },
-        body: JSON.stringify({
-          data: {
-            title: item.title,
-            description: item.description,
-            completed: item.completed,
-          } 
-        })
-      })
-      .then(response => response.json()
-      .then(setTimeout(() => {document.location.reload()}, 100))
-      .catch(erro => console.log('Aconteceu um erro') + console.log(erro)))
     }
     // DELETE task fim
   
-  
+
     //CHECKBOX
     function handleSetCompleted(e) {
-      const id = e.target.parentNode.parentNode.parentNode.id;
-      let isCompleted
-      e.target.checked ? isCompleted=true : isCompleted=false
-
+      const id = Number(e.target.id)
+      const taskTitleSelect = document.querySelector(`.taskTitle-${id}`)
+      const taskTitle = taskTitleSelect.textContent
+      const taskDescriptionSelect = document.querySelector(`.taskDescription-${id}`)
+      const taskDescription = taskDescriptionSelect.textContent
+      setId(Number(id))
+      setDescription(taskDescription)
       const task = {
-        id: id,
-        completed: isCompleted,
+        id:id,
+        attributes: {
+          title: taskTitle,
+          description: description,
+          completed: e.target.checked ? true : false,
+        }
       }
-      
       updateTask(task)
     }
     //CHECKBOX fim
@@ -150,19 +160,21 @@ export const Home = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [id, setId] = useState('')
-    const completed = false
+    const [completed, setCompleted] = useState(false)
   
     const newTask = {
       id:id,
-      title: title,
-      description: description,
-      completed: completed,
+      attributes: {
+        title: title,
+        description: description,
+        completed: completed,
+      }
     }
-  
+
       return ( 
         <>
         <Modal title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} submit={(e) => handlePostTask(e)} />
-        <ModalUpdate title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} valueTitle={title} valueDescription={description} submit={(e) => handleUpdateTask(e)} />
+        <ModalUpdate title={(a) => setTitle(a.target.value)} description={(a) => setDescription(a.target.value)} valueTitle={title} valueDescription={description} submit={(e) => handleUpdateTask(e)}/>
           <div className="title">
             <h1>toodoo</h1>
             <ButtonPrimary onClick={() => openModalNewTask()} text='Nova Task'/>

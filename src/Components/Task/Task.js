@@ -15,7 +15,7 @@ export const Task = ({id, title, description, handleDelete, openModal, checked, 
                 <h4 className={`taskTitle-${id}`}>{title}</h4>
               </div>
               {description.length !== 0 && <div className='divisoria'></div>}
-              <p className={`taskDescription-${id} taskDescription`}>{description}</p>       
+              <p className={`taskDescription-${id} taskDescription`}>{description}</p>    
             </div>
             <div className='taskEvents'>
                 <ButtonSecondary onClick={openModal} text='Alterar' />
