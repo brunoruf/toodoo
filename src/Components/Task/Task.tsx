@@ -1,10 +1,18 @@
-import React from 'react'
 import { ButtonSecondary } from '../Button/ButtonSecondary';
 import './Task.css';
 
+interface TaskProps {
+  id: string;
+  title: string;
+  description: string;
+  handleDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  openModal: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  checked?: boolean;
+  setChecked: (event: React.MouseEvent<HTMLInputElement>) => void;
+  classes: string;
+}
 
-
-export const Task = ({id, title, description, handleDelete, openModal, checked, setChecked, classes}) => {
+export const Task = ({id, title, description, handleDelete, openModal, checked, setChecked, classes}:TaskProps) => {
 
   return (
     <>

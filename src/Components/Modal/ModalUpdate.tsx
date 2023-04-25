@@ -1,13 +1,21 @@
 import { ButtonPrimary } from '../Button/ButtonPrimary'
 import './modal.css'
 
+interface ModalUpdateProps {
+  title: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  description?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  submit?: (event: React.FormEvent<HTMLButtonElement>) => void;
+  valueTitle: string;
+  valueDescription: string;
+}
+
 function fechaModal() {
-    const modal = document.querySelector(".modalUpdate")
+    const modal = document.querySelector(".modalUpdate")!
     modal.classList.remove('active')
   }
 
 
-export const ModalUpdate = ({title, description, submit, valueTitle, valueDescription}) => {
+export const ModalUpdate = ({title, description, submit, valueTitle, valueDescription}:ModalUpdateProps) => {
 
   return (
     <div className="modalUpdate">
@@ -21,9 +29,9 @@ export const ModalUpdate = ({title, description, submit, valueTitle, valueDescri
           </div>
           <div className="formField">
             <label>Descrição</label>
-            <textarea type='text' placeholder="Digite uma descrição" onChange={description} defaultValue={valueDescription}/>
+            <textarea placeholder="Digite uma descrição" onChange={description} defaultValue={valueDescription}/>
           </div>
-          <ButtonPrimary type='submit' onClick={submit} text='Alterar' />
+          <ButtonPrimary type='submit' text='Alterar' onSubmit={submit}/>
         </form>
       </div>
     </div>

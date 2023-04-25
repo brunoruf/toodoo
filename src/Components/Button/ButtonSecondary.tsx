@@ -1,6 +1,12 @@
 import './Button.css'
 
-export const ButtonSecondary = ({text, action, onClick}) => {
+interface ButtonSecondaryProps {
+  text: string;
+  action?: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export const ButtonSecondary = ({text, action, onClick}:ButtonSecondaryProps) => {
 
   return (
     <>

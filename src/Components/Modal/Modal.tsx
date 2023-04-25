@@ -1,15 +1,18 @@
 import { ButtonPrimary } from '../Button/ButtonPrimary'
 import './modal.css'
 
+interface ModalProps {
+  title: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  description?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  submit?: (event: React.FormEvent<HTMLButtonElement>) => void;
+}
+
 function fechaModal() {
-    const modal = document.querySelector(".modalNovo")
+    const modal = document.querySelector(".modalNovo")!
     modal.classList.remove('active')
   }
 
-
-export const Modal = ({title, description, submit}) => {
-
-
+export const Modal = ({title, description, submit}:ModalProps) => {
 
   return (
     <div className="modalNovo">
@@ -23,9 +26,9 @@ export const Modal = ({title, description, submit}) => {
           </div>
           <div className="formField">
             <label>Descrição</label>
-            <textarea type='text' placeholder="Digite uma descrição" onChange={description}/>
+            <textarea placeholder="Digite uma descrição" onChange={description}/>
           </div>
-          <ButtonPrimary type='submit' onClick={submit} text='Cadastrar' />
+          <ButtonPrimary type='submit' onSubmit={submit} text='Cadastrar' />
         </form>
       </div>
     </div>
