@@ -14,8 +14,8 @@ export const Home = () => {
     
     const [data, setData] = useState<IData[]>([]);
     const [isLoading, setIsLoading] = useState(true)
-  
-    //GET 
+
+    //GET
     useEffect(() => {
       setIsLoading(true)
       fetch(url, {
@@ -30,17 +30,23 @@ export const Home = () => {
       .finally(() => setIsLoading(false))
     }, [])
     // GET Fim
-  
-  
+    
     // POST dados
     function openModalNewTask() {
+      if (data.length === 0) {
+        setId(1)
+      } else {
+        const getDataLength= data.length - 1
+        const newId = data[getDataLength].id
+        setId(newId + 1)
+      }
+
       const modal = document.querySelector(".modalNovo")!
       modal.classList.add('active')
     }
 
     function handlePostTask(e: React.FormEvent<HTMLButtonElement>) {
       e.preventDefault()
-      console.log(e)
       postTask(newTask)
       const modal = document.querySelector(".modalNovo")!
       modal.classList.remove('active')
@@ -55,18 +61,26 @@ export const Home = () => {
         },
         body: JSON.stringify({
           data: {
-            title: item.attributes.title,
-            description: item.attributes.description,
-            completed: item.attributes.completed,
+            id: item.id,
+
+              title: item.attributes.title,
+              description: item.attributes.description,
+              completed: item.attributes.completed,
+            
           } 
         })
       })
       .then(response => response.json())
       .then(() => setData([...data, item]))
       .catch(error => console.log('Aconteceu um erro' + error))
+      setTitle('')
+      setDescription('')
+      const formId = 'addTask'
+      const selectForm = document.getElementById(formId) as HTMLFormElement
+      selectForm.reset()
     }
     // POST dados fim
-  
+    
   
     //UPDATE dados
     function openModalUpdateTask(e:React.ChangeEvent<any>) {
@@ -146,13 +160,11 @@ export const Home = () => {
       const taskTitle = String(taskTitleSelect.textContent)
       const taskDescriptionSelect = document.querySelector(`.taskDescription-${id}`)!
       const taskDescription = String(taskDescriptionSelect.textContent)
-      setId(id)
-      setDescription(taskDescription)
       const task:IData = {
         id:id,
         attributes: {
           title: taskTitle,
-          description: description,
+          description: taskDescription,
           completed: e.target.checked ? true : false,
         }
       }
@@ -184,7 +196,7 @@ export const Home = () => {
           </div>
           <h2>A fazer</h2>
           <ul>
-            {isLoading ? <div>Carregando</div> : data.map(item => item.attributes.completed===false && 
+            {isLoading ? <div>Carregando</div> : data.length === 0 ? <div className="taskDescription">Comece cadastrando uma tarefa no botão "NOVA TASK"</div> : data.map(item => item.attributes.completed===false && 
               <Task 
                 key={item.id} 
                 classes='taskContainer' 

@@ -19,7 +19,7 @@ export const Modal = ({title, description, submit}:ModalProps) => {
       <div className="novaTask">
         <span className="close" onClick={() => fechaModal()}>X</span>
         <h3>Nova task</h3>
-        <form>
+        <form id="addTask">
           <div className="formField">
             <label>Titulo</label>
             <input type='text' placeholder="Digite um título" onChange={title}/>
