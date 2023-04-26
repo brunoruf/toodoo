@@ -1,15 +1,12 @@
-
-# toodoo - Get sh*t done.
+# toodoo - Get sh\*t done.
 
 A simple and very useful tool for organizing daily tasks and activities. In this version, you can list the tasks to be performed and mark those that have already been completed.
 
-Stay focused on the most important tasks and not forget anything! _o/
-
+Stay focused on the most important tasks and not forget anything! \_o/
 
 ## Authors
 
 - [@brunoruf](https://www.github.com/brunoruf)
-
 
 ## Next Features
 
@@ -18,11 +15,9 @@ Stay focused on the most important tasks and not forget anything! _o/
 - Light Theme
 - Register/Login
 
-
 ## Demo
 
-https://toodoo-production.up.railway.app/
-
+http://149.100.142.9/websites/toodoo/
 
 ## Feedback
 
