@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/websites/toodoo/static/css/main.05c92cba.css",
-    "main.js": "/websites/toodoo/static/js/main.90e67e10.js",
+    "main.js": "/websites/toodoo/static/js/main.caab00c3.js",
     "static/js/787.c4e7f8f9.chunk.js": "/websites/toodoo/static/js/787.c4e7f8f9.chunk.js",
     "index.html": "/websites/toodoo/index.html",
     "main.05c92cba.css.map": "/websites/toodoo/static/css/main.05c92cba.css.map",
-    "main.90e67e10.js.map": "/websites/toodoo/static/js/main.90e67e10.js.map",
+    "main.caab00c3.js.map": "/websites/toodoo/static/js/main.caab00c3.js.map",
     "787.c4e7f8f9.chunk.js.map": "/websites/toodoo/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.05c92cba.css",
-    "static/js/main.90e67e10.js"
+    "static/js/main.caab00c3.js"
   ]
 }
