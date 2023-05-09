@@ -22,6 +22,7 @@ export const Home = () => {
         method:'GET',
         headers: {
           'Authorization': 'bearer ' + token,
+          'Access-Control-Allow-Origin':'*',
         }
       })
       .then(response => response.json())
